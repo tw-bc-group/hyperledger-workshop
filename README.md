@@ -4,6 +4,7 @@
 
 - wget
 - curl
+- make
 - docker & docker-compose
 - go
 
@@ -37,6 +38,7 @@
   ```
   cd $GOPATH/src/github.com/hyperledger
   git clone https://github.com/hyperledger/fabric-ca
+  cd fabric-ca
   make docker
   ```
 
