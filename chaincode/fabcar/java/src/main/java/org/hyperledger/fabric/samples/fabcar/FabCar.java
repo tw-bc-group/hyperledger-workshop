@@ -138,13 +138,14 @@ public final class FabCar implements ContractInterface {
      *
      * @param ctx the transaction context
      * @return array of Cars found on the ledger
+     * @see A-Z https://stackoverflow.com/questions/59167073/getstatebyrange-returning-empty-iterator-for-in-hyperledger-fabric-java-sdk
      */
     @Transaction()
     public CarQueryResult[] queryAllCars(final Context ctx) {
         ChaincodeStub stub = ctx.getStub();
 
-        final String startKey = "";
-        final String endKey = "";
+        final String startKey = "A";
+        final String endKey = "Z";
         List<CarQueryResult> queryResults = new ArrayList<CarQueryResult>();
 
         QueryResultsIterator<KeyValue> results = stub.getStateByRange(startKey, endKey);
