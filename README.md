@@ -128,6 +128,18 @@ export CORE_PEER_ADDRESS=localhost:7051
 调用查询
 ```
 peer chaincode query -C mychannel -n fabcar -c '{"Args":["queryAllCars"]}'
+->
+[
+    {
+        "Key": "CAR0",
+        "Record": {
+            "make": "Toyota",
+            "model": "Prius",
+            "colour": "blue",
+            "owner": "Tomoko"
+        }
+    }...
+]
 ```
 
 ### 关闭网络
