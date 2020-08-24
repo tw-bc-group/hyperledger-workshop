@@ -12,6 +12,22 @@ export PEER0_ORG1_CA=${PWD}/organizations/peerOrganizations/org1.example.com/pee
 export PEER0_ORG2_CA=${PWD}/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt
 export PEER0_ORG3_CA=${PWD}/organizations/peerOrganizations/org3.example.com/peers/peer0.org3.example.com/tls/ca.crt
 
+if [ $USE_DOMAIN -eq 1 ] ; then
+  : ${ORDERER_ADDRESS:=orderer.example.com:7050}
+  : ${PEER0_ORG1_ADDRESS:=peer0.org1.example.com:7051}
+  : ${PEER0_ORG2_ADDRESS:=peer0.org2.example.com:9051}
+  : ${PEER0_ORG3_ADDRESS:=peer0.org3.example.com:11051}
+else
+  : ${ORDERER_ADDRESS:=localhost:7050}
+  : ${PEER0_ORG1_ADDRESS:=localhost:7051}
+  : ${PEER0_ORG2_ADDRESS:=localhost:9051}
+  : ${PEER0_ORG3_ADDRESS:=localhost:11051}
+fi
+export ORDERER_ADDRESS
+export PEER0_ORG1_ADDRESS
+export PEER0_ORG2_ADDRESS
+export PEER0_ORG3_ADDRESS
+
 # Set OrdererOrg.Admin globals
 setOrdererGlobals() {
   export CORE_PEER_LOCALMSPID="OrdererMSP"
@@ -32,18 +48,18 @@ setGlobals() {
     export CORE_PEER_LOCALMSPID="Org1MSP"
     export CORE_PEER_TLS_ROOTCERT_FILE=$PEER0_ORG1_CA
     export CORE_PEER_MSPCONFIGPATH=${PWD}/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
-    export CORE_PEER_ADDRESS=localhost:7051
+    export CORE_PEER_ADDRESS=${PEER0_ORG1_ADDRESS}
   elif [ $USING_ORG -eq 2 ]; then
     export CORE_PEER_LOCALMSPID="Org2MSP"
     export CORE_PEER_TLS_ROOTCERT_FILE=$PEER0_ORG2_CA
     export CORE_PEER_MSPCONFIGPATH=${PWD}/organizations/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp
-    export CORE_PEER_ADDRESS=localhost:9051
+    export CORE_PEER_ADDRESS=${PEER0_ORG2_ADDRESS}
 
   elif [ $USING_ORG -eq 3 ]; then
     export CORE_PEER_LOCALMSPID="Org3MSP"
     export CORE_PEER_TLS_ROOTCERT_FILE=$PEER0_ORG3_CA
     export CORE_PEER_MSPCONFIGPATH=${PWD}/organizations/peerOrganizations/org3.example.com/users/Admin@org3.example.com/msp
-    export CORE_PEER_ADDRESS=localhost:11051
+    export CORE_PEER_ADDRESS=${PEER0_ORG3_ADDRESS}
   else
     echo "================== ERROR !!! ORG Unknown =================="
   fi

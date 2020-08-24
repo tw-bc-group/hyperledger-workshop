@@ -6,7 +6,9 @@ PEER	:= ./bin/peer
 PWD		:= $(shell pwd)
 
 CC_NAME             ?= fabcar
-VERSION							?= 1
+USE_DOMAIN          ?= 0
+VERSION				?= 1
+SEQUENCE			?= $(VERSION)
 JAVA_SRC_PATH       := chaincode/$(CC_NAME)/java
 CC_SRC_PATH         := $(JAVA_SRC_PATH)/build/install/$(CC_NAME)
 
@@ -17,12 +19,12 @@ prepare:
 	./scripts/bootstrap.sh \
 		-s $(FABRIC_VERSION) $(FABRIC_AC_VERSION) $(COUCHDB_VERSION)
 
-compile:
+compileCC:
 	@echo Compile chaincode $(CHAINCODE)
 	cd $(JAVA_SRC_PATH) ;\
   ./gradlew installDist
 
-pack:
+packCC:
 	@echo Pack chaincode $(CHAINCODE)
 	pushd test-network ; source scripts/envVar.sh ; popd ;\
 	FABRIC_CFG_PATH=$(PWD)/config/ \
@@ -30,3 +32,9 @@ pack:
 		--path $(CC_SRC_PATH) \
 		--lang java \
 		--label fabcar_$(VERSION)
+
+deployCC:
+	cd test-network ;\
+	USE_DOMAIN=$(USE_DOMAIN) \
+	SEQUENCE=$(SEQUENCE) \
+	./network.sh deployCC -l java -v $(VERSION)

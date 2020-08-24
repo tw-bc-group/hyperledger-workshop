@@ -148,6 +148,41 @@ peer chaincode query -C mychannel -n fabcar -c '{"Args":["queryAllCars"]}'
 ./network.sh down
 ```
 
+## CI
+
+### 配置域名解析
+
+添加解析记录到DNS服务器或者`/etc/hosts`:
+
+```
+<fabric_host> peer0.org1.example.com
+<fabric_host> peer0.org2.example.com
+<fabric_host> peer0.org3.example.com
+<fabric_host> orderer.example.com
+```
+
+### 拷贝证书和配置
+
+将`bin`、`config`和`test-network/organizations`中的内容拷贝到Jenkins的项目目录下
+
+### 远程部署chaincode
+
+配置环境变量`USE_DOMAIN=1`会自动使用域名取代开发模式下的`localhost`以便CI远程部署chaincode。
+
+可通过简易的makefile调用:
+
+```
+make deployCC USE_DOMAIN=1 VERSION=<x> [SEQUENCE=<x>]
+```
+
+### Jenkins配置
+
+包括一个jenkins的部署模版，可以根据需要进行修改：
+
+```
+Jenkinsfile.chaincode.groovy
+```
+
 ## 参考
 
 - [编写你的第一个应用 — hyperledger-fabricdocs master 文档](https://hyperledger-fabric.readthedocs.io/zh_CN/latest/write_first_app.html)
