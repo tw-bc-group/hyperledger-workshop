@@ -1,0 +1,66 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cli
+  labels:
+    app: cli
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: cli
+  template:
+    metadata:
+      labels:
+        app: cli
+    spec:
+      containers:
+        - name: dnsutils
+          image: tutum/dnsutils
+          command:
+            - "sh"
+            - "-c"
+            - "sleep 1000000000"
+        - name: tools
+          image: hyperledger/fabric-tools:1.4
+          command:
+            - "sh"
+            - "-c"
+            - "sleep 1000000000"
+          volumeMounts:
+            - name: data
+              mountPath: /var/hyperledger/
+        - name: ca
+          image: hyperledger/fabric-ca:1.4
+          command:
+            - "sh"
+            - "-c"
+            - "sleep 1000000000"
+          volumeMounts:
+            - name: data
+              mountPath: /var/hyperledger/
+          volumeMounts:
+            - name: ca-cert
+              mountPath: /var/hyperledger/ca-cert
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: cli
+        - name: ca-cert
+          secret:
+            secretName: ca-orderer-cert
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: cli
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
