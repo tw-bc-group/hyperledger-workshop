@@ -1,5 +1,7 @@
 #!/bin/bash
 
+: ${NS:=testnet}
+
 pushd $(dirname $0)
 source .env
 popd
