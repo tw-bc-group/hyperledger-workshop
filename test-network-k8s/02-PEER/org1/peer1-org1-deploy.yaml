@@ -1,0 +1,129 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: org1-peer1-production
+spec:
+  storageClassName: zonea 
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: org1-peer1-msp
+spec:
+  storageClassName: zonea 
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: org1-peer1-tls
+spec:
+  storageClassName: zonea 
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: org1-peer1
+  labels: &labels
+    app: org1-peer1
+    peer: peer1
+    org: org1
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 1
+  selector:
+    matchLabels: *labels
+  template:
+    metadata:
+      labels: *labels
+    spec:
+      hostname: peer1
+      subdomain: org1
+      containers:
+        - name: peer
+          image: hyperledger/fabric-peer:1.4.8
+          command:
+            - bash
+            - -c
+            - |
+              
+              while [ ! -d /etc/hyperledger/fabric/msp/signcerts ] || [ -z "$(ls -A /etc/hyperledger/fabric/msp/signcerts)" ];
+              do
+                echo "\033[0;31m /etc/hyperledger/fabric/msp/signcerts must contain certificates files \033[0m"
+                sleep 60
+              done
+
+              while [ ! -d /etc/hyperledger/fabric/tls ] || [ -z "$(ls -A /etc/hyperledger/fabric/tls)" ];
+              do
+                echo "\033[0;31m /etc/hyperledger/fabric/tls contain certificates files\033[0m"
+                sleep 60
+              done
+
+              peer node start
+          ports:
+            - name: peer
+              containerPort: 7050
+              protocol: TCP
+          envFrom:
+            - configMapRef:
+                name: peer-base-env
+          env:
+            - name: CORE_PEER_ADDRESS
+              value: peer1.org1.example.com:7051
+            - name: CORE_PEER_CHAINCODEADDRESS
+              value: peer1.org1.example.com:7052
+            - name: CORE_PEER_GOSSIP_BOOTSTRAP
+              value: peer0.org1.example.com:7051
+            - name: CORE_PEER_GOSSIP_EXTERNALENDPOINT
+              value: peer1.org1.example.com:7051
+            - name: CORE_PEER_ID
+              value: peer1.org1.example.com
+            - name: CORE_PEER_LOCALMSPID
+              value: Org1MSP
+          workingDir: /opt/gopath/src/github.com/hyperledger/fabric/peer
+          volumeMounts:
+            - mountPath: /host/var/run/docker.sock
+              name: dockersocket
+            - name: production
+              mountPath: /var/hyperledger/production
+            - name: msp
+              mountPath: /etc/hyperledger/fabric/msp
+            - name: tls
+              mountPath: /etc/hyperledger/fabric/tls
+            - name: channel-artifacts
+              mountPath: /var/hyperledger/peer1/peer1.genesis.block
+              subPath: genesis.block
+              readOnly: true
+      volumes:
+        - name: production
+          persistentVolumeClaim:
+            claimName: org1-peer1-production
+        - name: msp
+          persistentVolumeClaim:
+            claimName: org1-peer1-msp
+        - name: tls
+          persistentVolumeClaim:
+            claimName: org1-peer1-tls
+        - name: channel-artifacts
+          secret:
+            secretName: channel-artifacts
+        - name: dockersocket
+          hostPath:
+            path: /var/run/docker.sock
