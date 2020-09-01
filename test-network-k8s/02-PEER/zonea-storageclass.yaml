@@ -1,0 +1,10 @@
+# only for aws cn
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: zonea
+parameters:
+  fsType: ext4
+  type: gp2
+  zone: cn-northwest-1a
+provisioner: kubernetes.io/aws-ebs
