@@ -48,7 +48,17 @@ spec:
         - name: orderer
           image: hyperledger/fabric-orderer:1.4.8
           command:
-            - orderer
+            - /bin/bash
+            - -c
+            - |
+
+              while [ ! -d /var/hyperledger/orderer/msp/signcerts ] || [ -z "$(ls -A /var/hyperledger/orderer/msp/signcerts)" ];
+              do
+                echo "\033[0;31m /var/hyperledger/orderer/msp/signcerts must contain certificates files \033[0m"
+                sleep 60
+              done
+
+              orderer
           ports:
             - name: orderer
               containerPort: 7050
