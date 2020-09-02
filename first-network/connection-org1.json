@@ -15,38 +15,38 @@
         "Org1": {
             "mspid": "Org1MSP",
             "peers": [
-                "peer0.org1.example.com",
-                "peer1.org1.example.com"
+                "peer0.org1.testnet.svc.cluster.local",
+                "peer1.org1.testnet.svc.cluster.local"
             ],
             "certificateAuthorities": [
-                "ca.org1.example.com"
+                "ca.org1.testnet.svc.cluster.local"
             ]
         }
     },
     "peers": {
-        "peer0.org1.example.com": {
+        "peer0.org1.testnet.svc.cluster.local": {
             "url": "grpcs://localhost:7051",
             "tlsCACerts": {
                 "pem": "-----BEGIN CERTIFICATE-----\nMIICVjCCAf2gAwIBAgIQPfKySi08NWa3CizNVPCKvTAKBggqgRzPVQGDdTB2MQsw\nCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZy\nYW5jaXNjbzEZMBcGA1UEChMQb3JnMS5leGFtcGxlLmNvbTEfMB0GA1UEAxMWdGxz\nY2Eub3JnMS5leGFtcGxlLmNvbTAeFw0yMDA5MDIwOTI3MDBaFw0zMDA4MzEwOTI3\nMDBaMHYxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQH\nEw1TYW4gRnJhbmNpc2NvMRkwFwYDVQQKExBvcmcxLmV4YW1wbGUuY29tMR8wHQYD\nVQQDExZ0bHNjYS5vcmcxLmV4YW1wbGUuY29tMFkwEwYHKoZIzj0CAQYIKoEcz1UB\ngi0DQgAEAJTTvIuZUHlWdTO7VMUgQJSGZPEa8RhbPHZ+19sT3W4Fa50Lkcgyu8qL\nPt7JFl5SOYHTJH1wQxf0KnYd47AgoKNtMGswDgYDVR0PAQH/BAQDAgGmMB0GA1Ud\nJQQWMBQGCCsGAQUFBwMCBggrBgEFBQcDATAPBgNVHRMBAf8EBTADAQH/MCkGA1Ud\nDgQiBCATZhu+EsdrcovXNLjrsuV1SDunKtzIM2ewLMVTzH+0YzAKBggqgRzPVQGD\ndQNHADBEAiBYEa67iJrspHH7HNnqX0nc0LW6Z6IsYeWKM5qTSAuDfwIgBoLM2hNv\nr1Q+tSubTmG7hSYcksjVeMRjBAj0B/mNkbo=\n-----END CERTIFICATE-----\n"
             },
             "grpcOptions": {
-                "ssl-target-name-override": "peer0.org1.example.com",
-                "hostnameOverride": "peer0.org1.example.com"
+                "ssl-target-name-override": "peer0.org1.testnet.svc.cluster.local",
+                "hostnameOverride": "peer0.org1.testnet.svc.cluster.local"
             }
         },
-        "peer1.org1.example.com": {
+        "peer1.org1.testnet.svc.cluster.local": {
             "url": "grpcs://localhost:8051",
             "tlsCACerts": {
                 "pem": "-----BEGIN CERTIFICATE-----\nMIICVjCCAf2gAwIBAgIQPfKySi08NWa3CizNVPCKvTAKBggqgRzPVQGDdTB2MQsw\nCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZy\nYW5jaXNjbzEZMBcGA1UEChMQb3JnMS5leGFtcGxlLmNvbTEfMB0GA1UEAxMWdGxz\nY2Eub3JnMS5leGFtcGxlLmNvbTAeFw0yMDA5MDIwOTI3MDBaFw0zMDA4MzEwOTI3\nMDBaMHYxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQH\nEw1TYW4gRnJhbmNpc2NvMRkwFwYDVQQKExBvcmcxLmV4YW1wbGUuY29tMR8wHQYD\nVQQDExZ0bHNjYS5vcmcxLmV4YW1wbGUuY29tMFkwEwYHKoZIzj0CAQYIKoEcz1UB\ngi0DQgAEAJTTvIuZUHlWdTO7VMUgQJSGZPEa8RhbPHZ+19sT3W4Fa50Lkcgyu8qL\nPt7JFl5SOYHTJH1wQxf0KnYd47AgoKNtMGswDgYDVR0PAQH/BAQDAgGmMB0GA1Ud\nJQQWMBQGCCsGAQUFBwMCBggrBgEFBQcDATAPBgNVHRMBAf8EBTADAQH/MCkGA1Ud\nDgQiBCATZhu+EsdrcovXNLjrsuV1SDunKtzIM2ewLMVTzH+0YzAKBggqgRzPVQGD\ndQNHADBEAiBYEa67iJrspHH7HNnqX0nc0LW6Z6IsYeWKM5qTSAuDfwIgBoLM2hNv\nr1Q+tSubTmG7hSYcksjVeMRjBAj0B/mNkbo=\n-----END CERTIFICATE-----\n"
             },
             "grpcOptions": {
-                "ssl-target-name-override": "peer1.org1.example.com",
-                "hostnameOverride": "peer1.org1.example.com"
+                "ssl-target-name-override": "peer1.org1.testnet.svc.cluster.local",
+                "hostnameOverride": "peer1.org1.testnet.svc.cluster.local"
             }
         }
     },
     "certificateAuthorities": {
-        "ca.org1.example.com": {
+        "ca.org1.testnet.svc.cluster.local": {
             "url": "https://localhost:7054",
             "caName": "ca-org1",
             "tlsCACerts": {

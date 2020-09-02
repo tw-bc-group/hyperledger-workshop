@@ -11,29 +11,29 @@ organizations:
   Org${ORG}:
     mspid: Org${ORG}MSP
     peers:
-    - peer0.org${ORG}.example.com
-    - peer1.org${ORG}.example.com
+    - peer0.org${ORG}.testnet.svc.cluster.local
+    - peer1.org${ORG}.testnet.svc.cluster.local
     certificateAuthorities:
-    - ca.org${ORG}.example.com
+    - ca.org${ORG}.testnet.svc.cluster.local
 peers:
-  peer0.org${ORG}.example.com:
+  peer0.org${ORG}.testnet.svc.cluster.local:
     url: grpcs://localhost:${P0PORT}
     tlsCACerts:
       pem: |
         ${PEERPEM}
     grpcOptions:
-      ssl-target-name-override: peer0.org${ORG}.example.com
-      hostnameOverride: peer0.org${ORG}.example.com
-  peer1.org${ORG}.example.com:
+      ssl-target-name-override: peer0.org${ORG}.testnet.svc.cluster.local
+      hostnameOverride: peer0.org${ORG}.testnet.svc.cluster.local
+  peer1.org${ORG}.testnet.svc.cluster.local:
     url: grpcs://localhost:${P1PORT}
     tlsCACerts:
       pem: |
         ${PEERPEM}
     grpcOptions:
-      ssl-target-name-override: peer1.org${ORG}.example.com
-      hostnameOverride: peer1.org${ORG}.example.com
+      ssl-target-name-override: peer1.org${ORG}.testnet.svc.cluster.local
+      hostnameOverride: peer1.org${ORG}.testnet.svc.cluster.local
 certificateAuthorities:
-  ca.org${ORG}.example.com:
+  ca.org${ORG}.testnet.svc.cluster.local:
     url: https://localhost:${CAPORT}
     caName: ca-org${ORG}
     tlsCACerts:

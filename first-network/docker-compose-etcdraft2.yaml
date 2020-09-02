@@ -6,72 +6,72 @@
 version: '2'
 
 volumes:
-  orderer2.example.com:
-  orderer3.example.com:
-  orderer4.example.com:
-  orderer5.example.com:
+  orderer2.testnet.svc.cluster.local:
+  orderer3.testnet.svc.cluster.local:
+  orderer4.testnet.svc.cluster.local:
+  orderer5.testnet.svc.cluster.local:
 
 networks:
   byfn:
 
 services:
 
-  orderer2.example.com:
+  orderer2.testnet.svc.cluster.local:
     extends:
       file: base/peer-base.yaml
       service: orderer-base
-    container_name: orderer2.example.com
+    container_name: orderer2.testnet.svc.cluster.local
     networks:
     - byfn
     volumes:
         - ./channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
-        - ./crypto-config/ordererOrganizations/example.com/orderers/orderer2.example.com/msp:/var/hyperledger/orderer/msp
-        - ./crypto-config/ordererOrganizations/example.com/orderers/orderer2.example.com/tls/:/var/hyperledger/orderer/tls
-        - orderer2.example.com:/var/hyperledger/production/orderer
+        - ./crypto-config/ordererOrganizations/testnet.svc.cluster.local/orderers/orderer2.testnet.svc.cluster.local/msp:/var/hyperledger/orderer/msp
+        - ./crypto-config/ordererOrganizations/testnet.svc.cluster.local/orderers/orderer2.testnet.svc.cluster.local/tls/:/var/hyperledger/orderer/tls
+        - orderer2.testnet.svc.cluster.local:/var/hyperledger/production/orderer
     ports:
     - 8050:7050
 
-  orderer3.example.com:
+  orderer3.testnet.svc.cluster.local:
     extends:
       file: base/peer-base.yaml
       service: orderer-base
-    container_name: orderer3.example.com
+    container_name: orderer3.testnet.svc.cluster.local
     networks:
     - byfn
     volumes:
         - ./channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
-        - ./crypto-config/ordererOrganizations/example.com/orderers/orderer3.example.com/msp:/var/hyperledger/orderer/msp
-        - ./crypto-config/ordererOrganizations/example.com/orderers/orderer3.example.com/tls/:/var/hyperledger/orderer/tls
-        - orderer3.example.com:/var/hyperledger/production/orderer
+        - ./crypto-config/ordererOrganizations/testnet.svc.cluster.local/orderers/orderer3.testnet.svc.cluster.local/msp:/var/hyperledger/orderer/msp
+        - ./crypto-config/ordererOrganizations/testnet.svc.cluster.local/orderers/orderer3.testnet.svc.cluster.local/tls/:/var/hyperledger/orderer/tls
+        - orderer3.testnet.svc.cluster.local:/var/hyperledger/production/orderer
     ports:
     - 9050:7050
 
-  orderer4.example.com:
+  orderer4.testnet.svc.cluster.local:
     extends:
       file: base/peer-base.yaml
       service: orderer-base
-    container_name: orderer4.example.com
+    container_name: orderer4.testnet.svc.cluster.local
     networks:
     - byfn
     volumes:
         - ./channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
-        - ./crypto-config/ordererOrganizations/example.com/orderers/orderer4.example.com/msp:/var/hyperledger/orderer/msp
-        - ./crypto-config/ordererOrganizations/example.com/orderers/orderer4.example.com/tls/:/var/hyperledger/orderer/tls
-        - orderer4.example.com:/var/hyperledger/production/orderer
+        - ./crypto-config/ordererOrganizations/testnet.svc.cluster.local/orderers/orderer4.testnet.svc.cluster.local/msp:/var/hyperledger/orderer/msp
+        - ./crypto-config/ordererOrganizations/testnet.svc.cluster.local/orderers/orderer4.testnet.svc.cluster.local/tls/:/var/hyperledger/orderer/tls
+        - orderer4.testnet.svc.cluster.local:/var/hyperledger/production/orderer
     ports:
     - 10050:7050
 
-  orderer5.example.com:
+  orderer5.testnet.svc.cluster.local:
     extends:
       file: base/peer-base.yaml
       service: orderer-base
-    container_name: orderer5.example.com
+    container_name: orderer5.testnet.svc.cluster.local
     networks:
     - byfn
     volumes:
         - ./channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
-        - ./crypto-config/ordererOrganizations/example.com/orderers/orderer5.example.com/msp:/var/hyperledger/orderer/msp
-        - ./crypto-config/ordererOrganizations/example.com/orderers/orderer5.example.com/tls/:/var/hyperledger/orderer/tls
-        - orderer5.example.com:/var/hyperledger/production/orderer
+        - ./crypto-config/ordererOrganizations/testnet.svc.cluster.local/orderers/orderer5.testnet.svc.cluster.local/msp:/var/hyperledger/orderer/msp
+        - ./crypto-config/ordererOrganizations/testnet.svc.cluster.local/orderers/orderer5.testnet.svc.cluster.local/tls/:/var/hyperledger/orderer/tls
+        - orderer5.testnet.svc.cluster.local:/var/hyperledger/production/orderer
     ports:
     - 11050:7050
