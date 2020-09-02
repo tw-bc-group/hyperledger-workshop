@@ -1,3 +1,4 @@
+#!/bin/bash
 if [[ -z $1 ]]; then
   cat <<EOF
 Usage:
@@ -13,8 +14,9 @@ fi
 
 org=$1
 peer=$2
+domain=$NS.svc.cluster.local
 app=${org}-${peer}
-source_path=../crypto-config/peerOrganizations/$org.example.com/peers/$peer.$org.example.com
+source_path=../crypto-config/peerOrganizations/$org.$domain/peers/$peer.$org.$domain
 echo $source_path
 
 
