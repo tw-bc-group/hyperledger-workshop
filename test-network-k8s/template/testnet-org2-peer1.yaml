@@ -5,7 +5,6 @@ metadata:
   name: org2-peer1-production
   namespace: testnet
 spec:
-  storageClassName: zonea 
   accessModes:
     - ReadWriteOnce
   resources:
@@ -17,7 +16,6 @@ kind: PersistentVolumeClaim
 metadata:
   name: org2-peer1-msp
 spec:
-  storageClassName: zonea 
   accessModes:
     - ReadWriteOnce
   resources:
@@ -29,7 +27,6 @@ kind: PersistentVolumeClaim
 metadata:
   name: org2-peer1-tls
 spec:
-  storageClassName: zonea 
   accessModes:
     - ReadWriteOnce
   resources:
