@@ -3,6 +3,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: orderer
+  namespace: testnet
 spec:
   clusterIP: None
   selector:

@@ -5,19 +5,17 @@
 部署通用变量
 
 ```
-k apply -f peer-base-env-cm.yaml
+k apply -f ../template/testnet-peer-common-env-configmap.yaml
 ```
 
 部署org1
 ```
-cd org1
-k apply -f .
+k apply -f ../template/testnet-org1-*.yaml
 ```
 
 部署org2
 ```
-cd org2
-k apply -f .
+k apply -f ../template/testnet-org2-*.yaml
 ```
 
 ### 同步MSP

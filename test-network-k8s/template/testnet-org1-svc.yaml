@@ -1,9 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
+  name: org1
+  namespace: testnet
   labels:
-    org: org2
-  name: org2
+    org: org1
 spec:
   ports:
   - name: "7050"
