@@ -21,11 +21,13 @@ export PEER0_ORG2_CA=${PWD}/crypto-config/peerOrganizations/org2.testnet.svc.clu
 export PEER0_ORG3_CA=${PWD}/crypto-config/peerOrganizations/org3.testnet.svc.cluster.local/peers/peer0.org3.testnet.svc.cluster.local/tls/ca.crt
 
 if [ $USE_DOMAIN -eq 1 ] ; then
-  : ${ORDERER_ADDRESS:=orderer.testnet.svc.cluster.local:7050}
-  : ${PEER0_ORG1_ADDRESS:=peer0.org1.testnet.svc.cluster.local:7051}
-  : ${PEER0_ORG2_ADDRESS:=peer0.org2.testnet.svc.cluster.local:9051}
-  : ${PEER0_ORG3_ADDRESS:=peer0.org3.testnet.svc.cluster.local:11051}
+  echo "--- use domain ---"
+  ORDERER_ADDRESS=orderer.testnet.svc.cluster.local:7050
+  PEER0_ORG1_ADDRESS=peer0.org1.testnet.svc.cluster.local:7051
+  PEER0_ORG2_ADDRESS=peer0.org2.testnet.svc.cluster.local:9051
+  PEER0_ORG3_ADDRESS=peer0.org3.testnet.svc.cluster.local:11051
 else
+  echo "--- use localhost ---"
   : ${ORDERER_ADDRESS:=localhost:7050}
   : ${PEER0_ORG1_ADDRESS:=localhost:7051}
   : ${PEER0_ORG2_ADDRESS:=localhost:9051}
@@ -62,7 +64,6 @@ setGlobals() {
     export CORE_PEER_TLS_ROOTCERT_FILE=$PEER0_ORG2_CA
     export CORE_PEER_MSPCONFIGPATH=${PWD}/crypto-config/peerOrganizations/org2.testnet.svc.cluster.local/users/Admin@org2.testnet.svc.cluster.local/msp
     export CORE_PEER_ADDRESS=${PEER0_ORG2_ADDRESS}
-
   elif [ $USING_ORG -eq 3 ]; then
     export CORE_PEER_LOCALMSPID="Org3MSP"
     export CORE_PEER_TLS_ROOTCERT_FILE=$PEER0_ORG3_CA
@@ -71,6 +72,8 @@ setGlobals() {
   else
     echo "================== ERROR !!! ORG Unknown =================="
   fi
+
+  echo "connect to ${CORE_PEER_ADDRESS}"
 
   if [ "$VERBOSE" == "true" ]; then
     env | grep CORE
