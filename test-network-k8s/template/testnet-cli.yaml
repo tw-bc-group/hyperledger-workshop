@@ -21,12 +21,14 @@ spec:
       containers:
         - name: dnsutils
           image: amouat/network-utils
+          workingDir: /var/hyperledger/
           command:
             - "sh"
             - "-c"
             - "sleep 1000000000"
         - name: tools
           image: hyperledger/fabric-tools:1.4
+          workingDir: /var/hyperledger/
           command:
             - "sh"
             - "-c"
@@ -36,6 +38,7 @@ spec:
               mountPath: /var/hyperledger/
         - name: ca
           image: hyperledger/fabric-ca:1.4
+          workingDir: /var/hyperledger/
           command:
             - "sh"
             - "-c"

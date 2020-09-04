@@ -1,6 +1,5 @@
 ## Order
 
-
 ### 准备工作
 
 工作路径为当前README所在路径(hyperledger-workshop/test-network-k8s/01-ORDERER), 运行下面的代码设置环境变量和命令行缩写
@@ -82,25 +81,3 @@ $ ./sync.sh
 ```
 
 观察日志输出，等待最多60秒，orderer便会使用该MSP启动.
-
-### 工具
-
-启动
-```
-k apply -f ../template/testnet-cli.yaml
-```
-
-进入fabric tools
-```
-k exec -it deploy/cli -c tools -- bash
-```
-
-进入fabric ca client
-```
-k exec -it deploy/cli -c ca -- bash
-```
-
-调试网络
-```
-k exec -it deploy/cli -c dnsutils -- bash
-```
