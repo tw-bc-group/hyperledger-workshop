@@ -87,7 +87,7 @@ $ ./sync.sh
 
 启动
 ```
-k apply -f template/testnet-cli.yaml
+k apply -f ../template/testnet-cli.yaml
 ```
 
 进入fabric tools
