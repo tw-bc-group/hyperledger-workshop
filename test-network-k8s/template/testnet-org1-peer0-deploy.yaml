@@ -84,15 +84,15 @@ spec:
                 name: peer-base-env
           env:
             - name: CORE_PEER_ADDRESS
-              value: peer0.org1.example.com:7051
+              value: peer0.org1.testnet.svc.cluster.local:7051
             - name: CORE_PEER_CHAINCODEADDRESS
-              value: peer0.org1.example.com:7052
+              value: peer0.org1.testnet.svc.cluster.local:7052
             - name: CORE_PEER_GOSSIP_BOOTSTRAP
-              value: peer1.org1.example.com:7051
+              value: peer1.org1.testnet.svc.cluster.local:7051
             - name: CORE_PEER_GOSSIP_EXTERNALENDPOINT
-              value: peer0.org1.example.com:7051
+              value: peer0.org1.testnet.svc.cluster.local:7051
             - name: CORE_PEER_ID
-              value: peer0.org1.example.com
+              value: peer0.org1.testnet.svc.cluster.local
             - name: CORE_PEER_LOCALMSPID
               value: Org1MSP
           workingDir: /opt/gopath/src/github.com/hyperledger/fabric/peer

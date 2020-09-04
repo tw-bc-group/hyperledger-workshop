@@ -16,7 +16,7 @@ org=$1
 peer=$2
 domain=$NS.svc.cluster.local
 app=${org}-${peer}
-source_path=../crypto-config/peerOrganizations/$org.$domain/peers/$peer.$org.$domain
+source_path=../../first-network/crypto-config/peerOrganizations/$org.$domain/peers/$peer.$org.$domain
 echo $source_path
 
 

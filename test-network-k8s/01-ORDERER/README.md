@@ -17,7 +17,7 @@ source ../envVars.sh
 **创世块**
 
 ```
-cd channel-artifacts
+cd ../../first-network/channel-artifacts
 % k create secret generic channel-artifacts --from-file=genesis.block
 secret/channel-artifacts created
 % k describe secrets channel-artifacts

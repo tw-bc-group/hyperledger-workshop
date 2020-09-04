@@ -1,0 +1,88 @@
+---
+name: first-network-org1
+version: 1.0.0
+client:
+  organization: Org1
+  connection:
+    timeout:
+      peer:
+        endorser: '300'
+organizations:
+  Org1:
+    mspid: Org1MSP
+    peers:
+    - peer0.org1.testnet.svc.cluster.local
+    - peer1.org1.testnet.svc.cluster.local
+    certificateAuthorities:
+    - ca.org1.testnet.svc.cluster.local
+peers:
+  peer0.org1.testnet.svc.cluster.local:
+    url: grpcs://localhost:7051
+    tlsCACerts:
+      pem: |
+        -----BEGIN CERTIFICATE-----
+        MIICVjCCAf2gAwIBAgIQPfKySi08NWa3CizNVPCKvTAKBggqgRzPVQGDdTB2MQsw
+        CQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZy
+        YW5jaXNjbzEZMBcGA1UEChMQb3JnMS5leGFtcGxlLmNvbTEfMB0GA1UEAxMWdGxz
+        Y2Eub3JnMS5leGFtcGxlLmNvbTAeFw0yMDA5MDIwOTI3MDBaFw0zMDA4MzEwOTI3
+        MDBaMHYxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQH
+        Ew1TYW4gRnJhbmNpc2NvMRkwFwYDVQQKExBvcmcxLmV4YW1wbGUuY29tMR8wHQYD
+        VQQDExZ0bHNjYS5vcmcxLmV4YW1wbGUuY29tMFkwEwYHKoZIzj0CAQYIKoEcz1UB
+        gi0DQgAEAJTTvIuZUHlWdTO7VMUgQJSGZPEa8RhbPHZ+19sT3W4Fa50Lkcgyu8qL
+        Pt7JFl5SOYHTJH1wQxf0KnYd47AgoKNtMGswDgYDVR0PAQH/BAQDAgGmMB0GA1Ud
+        JQQWMBQGCCsGAQUFBwMCBggrBgEFBQcDATAPBgNVHRMBAf8EBTADAQH/MCkGA1Ud
+        DgQiBCATZhu+EsdrcovXNLjrsuV1SDunKtzIM2ewLMVTzH+0YzAKBggqgRzPVQGD
+        dQNHADBEAiBYEa67iJrspHH7HNnqX0nc0LW6Z6IsYeWKM5qTSAuDfwIgBoLM2hNv
+        r1Q+tSubTmG7hSYcksjVeMRjBAj0B/mNkbo=
+        -----END CERTIFICATE-----
+        
+    grpcOptions:
+      ssl-target-name-override: peer0.org1.testnet.svc.cluster.local
+      hostnameOverride: peer0.org1.testnet.svc.cluster.local
+  peer1.org1.testnet.svc.cluster.local:
+    url: grpcs://localhost:8051
+    tlsCACerts:
+      pem: |
+        -----BEGIN CERTIFICATE-----
+        MIICVjCCAf2gAwIBAgIQPfKySi08NWa3CizNVPCKvTAKBggqgRzPVQGDdTB2MQsw
+        CQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZy
+        YW5jaXNjbzEZMBcGA1UEChMQb3JnMS5leGFtcGxlLmNvbTEfMB0GA1UEAxMWdGxz
+        Y2Eub3JnMS5leGFtcGxlLmNvbTAeFw0yMDA5MDIwOTI3MDBaFw0zMDA4MzEwOTI3
+        MDBaMHYxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQH
+        Ew1TYW4gRnJhbmNpc2NvMRkwFwYDVQQKExBvcmcxLmV4YW1wbGUuY29tMR8wHQYD
+        VQQDExZ0bHNjYS5vcmcxLmV4YW1wbGUuY29tMFkwEwYHKoZIzj0CAQYIKoEcz1UB
+        gi0DQgAEAJTTvIuZUHlWdTO7VMUgQJSGZPEa8RhbPHZ+19sT3W4Fa50Lkcgyu8qL
+        Pt7JFl5SOYHTJH1wQxf0KnYd47AgoKNtMGswDgYDVR0PAQH/BAQDAgGmMB0GA1Ud
+        JQQWMBQGCCsGAQUFBwMCBggrBgEFBQcDATAPBgNVHRMBAf8EBTADAQH/MCkGA1Ud
+        DgQiBCATZhu+EsdrcovXNLjrsuV1SDunKtzIM2ewLMVTzH+0YzAKBggqgRzPVQGD
+        dQNHADBEAiBYEa67iJrspHH7HNnqX0nc0LW6Z6IsYeWKM5qTSAuDfwIgBoLM2hNv
+        r1Q+tSubTmG7hSYcksjVeMRjBAj0B/mNkbo=
+        -----END CERTIFICATE-----
+        
+    grpcOptions:
+      ssl-target-name-override: peer1.org1.testnet.svc.cluster.local
+      hostnameOverride: peer1.org1.testnet.svc.cluster.local
+certificateAuthorities:
+  ca.org1.testnet.svc.cluster.local:
+    url: https://localhost:7054
+    caName: ca-org1
+    tlsCACerts:
+      pem: |
+        -----BEGIN CERTIFICATE-----
+        MIICUTCCAfegAwIBAgIQAv9TIziYKjrtiM91j3BeyzAKBggqgRzPVQGDdTBzMQsw
+        CQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZy
+        YW5jaXNjbzEZMBcGA1UEChMQb3JnMS5leGFtcGxlLmNvbTEcMBoGA1UEAxMTY2Eu
+        b3JnMS5leGFtcGxlLmNvbTAeFw0yMDA5MDIwOTI3MDBaFw0zMDA4MzEwOTI3MDBa
+        MHMxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1T
+        YW4gRnJhbmNpc2NvMRkwFwYDVQQKExBvcmcxLmV4YW1wbGUuY29tMRwwGgYDVQQD
+        ExNjYS5vcmcxLmV4YW1wbGUuY29tMFkwEwYHKoZIzj0CAQYIKoEcz1UBgi0DQgAE
+        //+m1PUfU39jNHhK8oLkLsvbTMLrfQYbfyufk0eFJKScL6ddJfrtyuKjU/nNhi3n
+        YPvmX6SrYt70wAxyDPohsaNtMGswDgYDVR0PAQH/BAQDAgGmMB0GA1UdJQQWMBQG
+        CCsGAQUFBwMCBggrBgEFBQcDATAPBgNVHRMBAf8EBTADAQH/MCkGA1UdDgQiBCCV
+        wHBU/3XNmEgUXe1HmrQ6ZybiHvfY/4z6VIw7M50o0DAKBggqgRzPVQGDdQNIADBF
+        AiEAofAXoZHnYePwzYIElGhrYkTwiiwUoK50kXeGHlkLf8oCIDbl73eyzglksXpq
+        UgxItkZNIWdLuDI7vPBWf7VW39B4
+        -----END CERTIFICATE-----
+        
+    httpOptions:
+      verify: false
