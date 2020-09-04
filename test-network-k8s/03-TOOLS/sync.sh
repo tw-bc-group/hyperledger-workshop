@@ -1,8 +1,6 @@
 #!/bin/bash
 
 app=cli
-source_path=../../first-network
-target_path=/var/hyperledger
 : ${NS:=testnet}
 
 echo "use namespaces $NS"
@@ -23,11 +21,19 @@ else
   exit 1
 fi
 
-echo "copy $source_path to $target_path"
-set -x
-kubectl -n $NS -c tools cp \
-  $source_path \
-  $NS/$POD:$target_path \
-  && kubectl -n $NS -c tools exec $POD -- \
-    ls -l $target_path
-set +x
+copy_to_cli() {
+  source_path=$1
+  target_path=$2
+  echo "copy $source_path to $target_path"
+  set -x
+  kubectl -n $NS -c tools cp \
+    $source_path \
+    $NS/$POD:$target_path \
+    && kubectl -n $NS -c tools exec $POD -- \
+      ls -l $target_path
+  set +x
+}
+
+
+copy_to_cli ../../first-network /var/hyperledger
+copy_to_cli ./tools /var/hyperledger
