@@ -1,3 +1,4 @@
 .env
-.kube_config
-/channel-artifacts
+.kube*
+channel-artifacts/
+crypto-config/
