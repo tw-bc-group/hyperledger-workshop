@@ -43,24 +43,18 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /var/hyperledger/
-          volumeMounts:
-            - name: ca-cert
-              mountPath: /var/hyperledger/ca-cert
       volumes:
         - name: data
           persistentVolumeClaim:
-            claimName: cli
-        - name: ca-cert
-          secret:
-            secretName: ca-orderer-cert
+            claimName: cli-data
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: cli
+  name: cli-data
 spec:
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 1Gi
+      storage: 8Gi
