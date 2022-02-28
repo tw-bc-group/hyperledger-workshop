@@ -112,7 +112,8 @@ $ ./network.sh createChannel
 设置访问的环境变量，可以使用如下模版
 
 ```
-# PROJECT_ROOT 为代码库根路径
+# PROJECT_ROOT 为这个代码库根路径
+export PROJECT_ROOT=${PWD}
 # 设置工具和配置路径
 export PATH=$PROJECT_ROOT/bin:$PATH
 export FABRIC_CFG_PATH=$PROJECT_ROOT/config/
