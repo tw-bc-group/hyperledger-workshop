@@ -12,7 +12,7 @@ CC_SRC_PATH         := $(JAVA_SRC_PATH)/build/install/$(CC_NAME)
 
 prepare:
 	@echo "use fabric $(FABRIC_VERSION)"
-	@echo "use fabric-ac $(FABRIC_AC_VERSION)"
+	@echo "use fabric-ca $(FABRIC_AC_VERSION)"
 	@echo "use couchdb $(COUCHDB_VERSION)"
 	./scripts/bootstrap.sh \
 		-s $(FABRIC_VERSION) $(FABRIC_AC_VERSION) $(COUCHDB_VERSION)
