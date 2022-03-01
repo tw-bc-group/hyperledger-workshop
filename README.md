@@ -7,6 +7,7 @@
 - make
 - docker v19.03.12
 - docker-compose v1.26.2
+- jdk 11
 - go v1.12.x (可选）
 - Ubuntu 18.04 LTS (建议)
 
