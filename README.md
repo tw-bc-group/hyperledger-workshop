@@ -11,6 +11,17 @@
 - go v1.12.x (可选）
 - Ubuntu 18.04 LTS (建议)
 
+## Colima for Mac
+如果你在 Mac 上使用了 Colima，那么需要确保以下两点。
+
+```
+1.  启动 colima 给当前项目目录赋予写权限
+colima start -m 4 --mount $PWD:w
+
+2. docker.sock 指向 colima 的目标文件
+cd /var/run && sudo ln -s ~/.colima/docker.sock docker.sock
+```
+
 ## 准备环境
 
 ### 方法一：使用脚本 (推荐）
@@ -20,7 +31,7 @@
 
 > 工具会被安装到`bin`目录下，使用时候需要添加到PATH
 
-### 方法二：从源代码构建
+### 方法二：从源代码构建（可选）
 设置Go项目的环境变量
   ```
   export GOPATH=$HOME/go
